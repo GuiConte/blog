@@ -9,8 +9,12 @@ class PostsController < ApplicationController
 
   def  create
     @post = Post.new(post_params)
-    @post.save
-    redirect_to  @post
+    if  @post.save
+      redirect_to  posts_path,
+      notice: 'Post  was  sucessfully  created!'
+    else
+      render :new
+    end
   end
 
   def  index
