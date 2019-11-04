@@ -1,13 +1,15 @@
-<%if flash[:notice] %>
+<% if flash[:notice] %>
     <div id="notice" class="alert alert-success" role="alert">
-        <%= flash [:notice] %>
+        <%= flash[:notice] %>
     </div >
 <% end %>
-<%if flash[:alert] %>
+
+<% if flash[:alert] %>
     <div id="alert" class="alert alert-danger" role="alert">
-        <%= flash [:alert] %>
+        <%= flash[:alert] %>
     </div >
 <% end %>
+
 <%= provide :titulo , "Posts" %>
 <div  class="table-responsive-md">
     <h2>Posts </h2>

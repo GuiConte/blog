@@ -3,6 +3,10 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
+  def  index
+    @posts = Post.all
+  end
+
   def new
     @post = Post.new
   end
@@ -17,25 +21,31 @@ class PostsController < ApplicationController
     end
   end
 
-  def  index
-    @posts = Post.all
-  end
-
   def  edit
     @post = Post.find(params[:id])
   end
-
+  
   def  update
     @post = Post.find(params[:id])
-    @post.update(post_params)
-    redirect_to  @post
+    if  @post.update(post_params)
+      redirect_to  posts_path ,
+      notice: 'Post  was  sucessfully  update!'
+    else
+      render :edit
+    end
   end
-
+  
   def  destroy
     @post = Post.find(params[:id])
-    @post.destroy
-    redirect_to  posts_path
+    if  @post.destroy
+      redirect_to  posts_path ,
+      notice: 'Post  was  sucessfully  removed!'
+    else
+      redirect_to  posts_path ,
+      alert: 'Fail to  remove  post!'
+    end
   end
+
 private
   def  post_params
     params.require(:post).permit(:title,:body)
